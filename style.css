@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+}
+
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100px;
+    background-color: #735751;
+    padding: 10px;
+}
+
+#logo {
+    width: 70px;
+}
+
+h1 {
+    margin: auto;
+    color: #E7D7C1;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    background-color: #8C1C13;
+    gap: 20px;
+    padding: 20px;
+}
+
+button {
+    font-family: 'Montserrat', sans-serif;
+}
+
+#add-book {
+    background-color: #735751;
+    color: #E7D7C1;
+    border: 3px solid #A78A7F;
+    border-radius: 5px;
+    height: 50px;
+    width: 100px;
+}
+
+#book-container {
+    background-color: #BF4342;
+    border: 3px solid #E7D7C1;
+    border-radius: 5px;
+    width: 80%;
+    min-height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #735751;
+    color: #E7D7C1;
+    border: 3px solid #A78A7F;
+    border-radius: 5px;
+    width: 150px;
+    height: 250px;
+    padding: 5px;
+    gap: 5px;
+}
+
+.card button {
+    background-color: #735751;
+    color: #E7D7C1;
+    border: 2px solid #A78A7F;
+    border-radius: 5px;
+    width: 80px;
+}
+
+#remove, #not-read {
+    background-color: #8C1C13;
+}
+
+#remove:hover, #read:hover, #not-read:hover {
+    transform: scale(1.05);
+}
+
+#new-book {
+    background-color: #E7D7C1;
+    color: #735751;
+    border: 5px solid #735751;
+    border-radius: 10px;
+    width: 350px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+    z-index: 999999;
+    position: absolute;
+    top: 250px;
+}
+
+input, #new-book button {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #BF4342;
+    color: #E7D7C1;
+    border: 2px solid #8C1C13;
+    border-radius: 5px;
+}
+
+input:hover, #new-book button:hover {
+    transform: scale(1.05);
+}
+
+#footer {
+    margin-top: auto;
+    text-align: center;
+    background-color: #E7D7C1;
+    color: #735751;
+    align-items: center;
+}
+
+#footer img {
+    height: 15px;
+    transition-timing-function: ease-in-out;
+}
+
+#footer img:hover {
+    transform: rotate(1turn);
+    transition-duration: 0.5s;
+}
