@@ -79,7 +79,6 @@ button {
 }
 
 .card button {
-    background-color: #735751;
     color: #E7D7C1;
     border: 2px solid #A78A7F;
     border-radius: 5px;
@@ -88,6 +87,10 @@ button {
 
 .remove, .not-read {
     background-color: #8C1C13;
+}
+
+.read {
+    background-color: #735751;
 }
 
 .remove:hover, .read:hover, .not-read:hover {
