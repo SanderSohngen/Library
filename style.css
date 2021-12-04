@@ -86,11 +86,11 @@ button {
     width: 80px;
 }
 
-#remove, #not-read {
+.remove, .not-read {
     background-color: #8C1C13;
 }
 
-#remove:hover, #read:hover, #not-read:hover {
+.remove:hover, .read:hover, .not-read:hover {
     transform: scale(1.05);
 }
 
