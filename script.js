@@ -1,75 +1,29 @@
-const myLibrary = [];
-
-function Book(title, author, pages, read) {
-	this.title = title;
-	this.author = author;
-	this.pages = pages;
-	this.read = read;
+addListeners();
+function addListeners() {
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach(button => {
+        button.addEventListener("click", event => {
+            const id = event.target.id;
+            if(options[id]) {
+                options[id]();
+                event.stopImmediatePropagation();
+            }
+        });
+    });
 }
 
-function addBookToLibrary(title, author, pages, read) {
-	const newBook = new Book(title, author, pages, read);
-	myLibrary.push(newBook);
-    displayBooks();
-}
-
-function displayBooks() {
-	const container = createContainer();
-	myLibrary.forEach(book => {
-        const newCard = createNewCard(book);
-		container.appendChild(newCard);
-	});
-}
-
-function createContainer() {
-    const content = document.querySelector("#content");
-    if (document.querySelector("#book-container")) {
-        const remove = document.querySelector("#book-container");
-        content.removeChild(remove);
-    }
-    const container = document.createElement("div");
-    container.setAttribute("id", "book-container");
-    content.appendChild(container);
-    return container;
-}
-
-function createNewCard(book) {
-    const card = document.createElement("div");
-    fillCardInfos(book);
-    createChildren(card, cardDisplay);
-    card.classList.add("card");
-    return card;
-}
-
-const cardDisplay = {
-    title : {
-        element: "p",
-        text : "",
-    },
-    author : {
-        element: "p",
-        text : "",
-    },
-    pages : {
-        element: "p",
-        text : "",
-    },
-    read : {
-        element: "button",
-        text : "",
-        class: "",
-    },
-    removeButton : {
-        element: "button",
-        text: "Remove",
-        class : "remove",
-    },
+const options = {
+	"add-book": createAddNewBookInterface,
+    "submit-book": submitBook,
 };
 
-function fillCardInfos(book) {
-	for (let attribute in book) 
-        cardDisplay[attribute]["text"] = book[attribute];
-    cardDisplay["read"]["class"] = book.read === "Read" ? "read" : "not-read";
+function createAddNewBookInterface() {
+	const content = document.querySelector("#content");
+	const newBookDiv = document.createElement("div");
+	newBookDiv.setAttribute("id", "new-book");
+	createChildren(newBookDiv, newBookInterface);
+	content.appendChild(newBookDiv);
+    addListeners();
 }
 
 function createChildren(parent, children) {
@@ -85,25 +39,6 @@ function createChildren(parent, children) {
 		}
 		parent.appendChild(child);
 	}
-}
-
-function removeBook(book) {
-	const bookIndex = findBookIndex(book);
-	myLibrary.splice(bookIndex, 1);
-}
-
-function findBookIndex(bookToFind) {
-	for (let i = 0; i < myLibrary.length; i++)
-		if (myLibrary[i].title === bookToFind.title) return i;
-}
-
-function createAddNewBookInterface() {
-	const content = document.querySelector("#content");
-	const newBookDiv = document.createElement("div");
-	newBookDiv.setAttribute("id", "new-book");
-	createChildren(newBookDiv, newBookInterface);
-	content.appendChild(newBookDiv);
-    createSubmitListener();
 }
 
 const newBookInterface = {
@@ -146,20 +81,6 @@ const newBookInterface = {
 	},
 };
 
-const options = {
-	"add-book": createAddNewBookInterface,
-    "submit-book": submitBook
-};
-
-const buttons = document.querySelectorAll("button");
-buttons.forEach((button) => {
-	button.addEventListener("click", event => {
-		const id = event.target.id;
-		options[id]();
-	});
-});
-
-
 function submitBook() {
     const title = document.querySelector("#new-title").value;
     const author = document.querySelector("#new-author").value;
@@ -167,8 +88,89 @@ function submitBook() {
     const readStatus = document.querySelector("#new-read").checked;
     const read = readStatus ? "Read" : "Not read";
     addBookToLibrary(title, author, pages, read);
-    destroyAddNewBookInterface()
+    destroyAddNewBookInterface();
+    addListeners();
 }
+
+function addBookToLibrary(title, author, pages, read) {
+	const newBook = new Book(title, author, pages, read);
+	myLibrary.push(newBook);
+    displayBooks();
+}
+
+function Book(title, author, pages, read) {
+    this.title = title;
+	this.author = author;
+	this.pages = pages;
+	this.read = read;
+}
+
+const myLibrary = [];
+
+function displayBooks() {
+	const container = createContainer();
+	myLibrary.forEach(book => {
+        const newCard = createNewCard(book);
+		container.appendChild(newCard);
+	});
+    addCardListeners();
+}
+
+function createContainer() {
+    const content = getCleanContentDiv();
+    const container = document.createElement("div");
+    container.setAttribute("id", "book-container");
+    content.appendChild(container);
+    return container;
+}
+
+function getCleanContentDiv() {
+    const content = document.querySelector("#content");
+    if (document.querySelector("#book-container")) {
+        const remove = document.querySelector("#book-container");
+        content.removeChild(remove);
+    }
+    return content;
+}
+
+function createNewCard(book) {
+    const card = document.createElement("div");
+    card.classList.add("card");
+    fillCardInfos(book);
+    createChildren(card, cardDisplay);
+    return card;
+}
+
+function fillCardInfos(book) {
+	for (let attribute in book) 
+        cardDisplay[attribute]["text"] = book[attribute];
+    cardDisplay["read"]["class"] = book.read === "Read" ? "read" : "not-read";
+}
+
+const cardDisplay = {
+    title : {
+        element: "p",
+        text : "",
+    },
+    author : {
+        element: "p",
+        text : "",
+    },
+    pages : {
+        element: "p",
+        text : "",
+    },
+    read : {
+        element: "button",
+        text : "",
+        class: "",
+    },
+    removeButton : {
+        element: "button",
+        text: "Remove",
+        class : "remove",
+    },
+};
 
 function destroyAddNewBookInterface() {
 	const content = document.querySelector("#content");
@@ -176,10 +178,47 @@ function destroyAddNewBookInterface() {
 	content.removeChild(newBookDiv);
 }
 
-function createSubmitListener() {
-    const submitBook = document.querySelector("#submit-book")
-    submitBook.addEventListener("click", event => {
-		const id = event.target.id;
-		options[id]();
-    })
+function addCardListeners() {
+    const cards = document.querySelectorAll(".card");
+    cards.forEach(card => addButtonListeners(card));
+}
+
+function addButtonListeners(card) {
+    const buttons = card.querySelectorAll("button");
+    buttons.forEach(button => addEventListener("click", event => {
+        const class_ = event.target.classList;
+        if(cardButtons[class_]) {
+            cardButtons[class_](card);
+            event.stopImmediatePropagation();
+        } 
+    }))
+}
+
+const cardButtons = {
+    read : toggleUnread,
+    "not-read": toggleRead,
+    remove : removeCard,
+}
+
+function toggleUnread(card) {
+    const toggle = card.children[3];
+    toggle.classList.add("not-read");
+    toggle.classList.remove("read");
+    toggle.textContent = "Not Read";
+}
+
+function toggleRead(card) {
+    const toggle = card.children[3];
+    toggle.classList.add("read");
+    toggle.classList.remove("not-read");
+    toggle.textContent = "Read";
+}
+
+function removeCard(card) {
+    const container = document.querySelector("#book-container");
+    container.removeChild(card);
+    if (!container.firstChild) {
+        const content = document.querySelector("#content");
+        content.removeChild(container);
+    }
 }
