@@ -13,7 +13,7 @@ body {
     align-items: center;
     justify-content: flex-start;
     height: 100px;
-    background-color: #735751;
+    background-color: #6D435A;
     padding: 10px;
 }
 
@@ -23,7 +23,7 @@ body {
 
 h1 {
     margin: auto;
-    color: #E7D7C1;
+    color: #FFFCF9;
 }
 
 #content {
@@ -31,7 +31,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
-    background-color: #8C1C13;
+    background-color: #352D39;
     gap: 20px;
     padding: 20px;
 }
@@ -41,17 +41,17 @@ button {
 }
 
 #add-book {
-    background-color: #735751;
-    color: #E7D7C1;
-    border: 3px solid #A78A7F;
+    background-color: #6D435A;
+    color: #FFFCF9;
+    border: 3px solid #FFFCF9;
     border-radius: 5px;
     height: 50px;
     width: 100px;
 }
 
 #book-container {
-    background-color: #BF4342;
-    border: 3px solid #E7D7C1;
+    background-color: #6D435A;
+    border: 3px solid #FFFCF9;
     border-radius: 5px;
     width: 80%;
     flex-grow: 1;
@@ -68,9 +68,9 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #735751;
-    color: #E7D7C1;
-    border: 3px solid #A78A7F;
+    background-color: #352D39;
+    color: #FFFCF9;
+    border: 3px solid #FFFCF9;
     border-radius: 5px;
     width: 150px;
     height: 250px;
@@ -79,18 +79,18 @@ button {
 }
 
 .card button {
-    color: #E7D7C1;
-    border: 2px solid #A78A7F;
+    color: #352D39;
+    border: 2px solid #FFFCF9;
     border-radius: 5px;
     width: 80px;
 }
 
 .remove, .not-read {
-    background-color: #8C1C13;
+    background-color: #FF6978;
 }
 
 .read {
-    background-color: #735751;
+    background-color: #B1EDE8;
 }
 
 .remove:hover, .read:hover, .not-read:hover {
@@ -98,9 +98,9 @@ button {
 }
 
 #new-book {
-    background-color: #E7D7C1;
-    color: #735751;
-    border: 5px solid #735751;
+    background-color: #FFFCF9;
+    color: #352D39;
+    border: 5px solid #352D39;
     border-radius: 10px;
     width: 350px;
     height: 400px;
@@ -117,9 +117,9 @@ button {
 
 input, #new-book button {
     font-family: 'Montserrat', sans-serif;
-    background-color: #BF4342;
-    color: #E7D7C1;
-    border: 2px solid #8C1C13;
+    background-color: #352D39;
+    color: #FFFCF9;
+    border: 2px solid #352D39;
     border-radius: 5px;
 }
 
@@ -130,8 +130,8 @@ input:hover, #new-book button:hover {
 #footer {
     margin-top: auto;
     text-align: center;
-    background-color: #E7D7C1;
-    color: #735751;
+    background-color: #6D435A;
+    color: #FFFCF9;
     align-items: center;
 }
 
