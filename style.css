@@ -54,7 +54,7 @@ button {
     border: 3px solid #E7D7C1;
     border-radius: 5px;
     width: 80%;
-    min-height: 500px;
+    flex-grow: 1;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -112,7 +112,7 @@ button {
     gap: 10px;
     z-index: 999999;
     position: absolute;
-    top: 250px;
+    top: 200px;
 }
 
 input, #new-book button {

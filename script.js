@@ -1,20 +1,19 @@
 addListeners();
 function addListeners() {
-    const buttons = document.querySelectorAll("button");
-    buttons.forEach(button => {
-        button.addEventListener("click", event => {
-            const id = event.target.id;
-            if(options[id]) {
-                options[id]();
-                event.stopImmediatePropagation();
-            }
-        });
-    });
+	const buttons = document.querySelectorAll("button");
+	buttons.forEach((button) => {
+		button.addEventListener("click", executeAction);
+	});
+}
+
+function executeAction(event) {
+	const id = event.target.id;
+	if (options[id]) options[id]();
 }
 
 const options = {
 	"add-book": createAddNewBookInterface,
-    "submit-book": submitBook,
+	"submit-book": submitBook,
 };
 
 function createAddNewBookInterface() {
@@ -23,7 +22,7 @@ function createAddNewBookInterface() {
 	newBookDiv.setAttribute("id", "new-book");
 	createChildren(newBookDiv, newBookInterface);
 	content.appendChild(newBookDiv);
-    addListeners();
+	addListeners();
 }
 
 function createChildren(parent, children) {
@@ -82,24 +81,24 @@ const newBookInterface = {
 };
 
 function submitBook() {
-    const title = document.querySelector("#new-title").value;
-    const author = document.querySelector("#new-author").value;
-    const pages = document.querySelector("#new-pages").value;
-    const readStatus = document.querySelector("#new-read").checked;
-    const read = readStatus ? "Read" : "Not read";
-    addBookToLibrary(title, author, pages, read);
-    destroyAddNewBookInterface();
-    addListeners();
+	const title = document.querySelector("#new-title").value;
+	const author = document.querySelector("#new-author").value;
+	const pages = document.querySelector("#new-pages").value;
+	const readStatus = document.querySelector("#new-read").checked;
+	const read = readStatus ? "Read" : "Not read";
+	addBookToLibrary(title, author, pages, read);
+	destroyAddNewBookInterface();
+	addListeners();
 }
 
 function addBookToLibrary(title, author, pages, read) {
 	const newBook = new Book(title, author, pages, read);
 	myLibrary.push(newBook);
-    displayBooks();
+	displayBooks();
 }
 
 function Book(title, author, pages, read) {
-    this.title = title;
+	this.title = title;
 	this.author = author;
 	this.pages = pages;
 	this.read = read;
@@ -109,67 +108,67 @@ const myLibrary = [];
 
 function displayBooks() {
 	const container = createContainer();
-	myLibrary.forEach(book => {
-        const newCard = createNewCard(book);
+	myLibrary.forEach((book) => {
+		const newCard = createNewCard(book);
 		container.appendChild(newCard);
 	});
-    addCardListeners();
+	addCardListeners();
 }
 
 function createContainer() {
-    const content = getCleanContentDiv();
-    const container = document.createElement("div");
-    container.setAttribute("id", "book-container");
-    content.appendChild(container);
-    return container;
+	const content = getCleanContentDiv();
+	const container = document.createElement("div");
+	container.setAttribute("id", "book-container");
+	content.appendChild(container);
+	return container;
 }
 
 function getCleanContentDiv() {
-    const content = document.querySelector("#content");
-    if (document.querySelector("#book-container")) {
-        const remove = document.querySelector("#book-container");
-        content.removeChild(remove);
-    }
-    return content;
+	const content = document.querySelector("#content");
+	if (document.querySelector("#book-container")) {
+		const remove = document.querySelector("#book-container");
+		content.removeChild(remove);
+	}
+	return content;
 }
 
 function createNewCard(book) {
-    const card = document.createElement("div");
-    card.classList.add("card");
-    fillCardInfos(book);
-    createChildren(card, cardDisplay);
-    return card;
+	const card = document.createElement("div");
+	card.classList.add("card");
+	fillCardInfos(book);
+	createChildren(card, cardDisplay);
+	return card;
 }
 
 function fillCardInfos(book) {
-	for (let attribute in book) 
-        cardDisplay[attribute]["text"] = book[attribute];
-    cardDisplay["read"]["class"] = book.read === "Read" ? "read" : "not-read";
+	for (let attribute in book)
+		cardDisplay[attribute]["text"] = book[attribute];
+	cardDisplay["read"]["class"] = book.read === "Read" ? "read" : "not-read";
 }
 
 const cardDisplay = {
-    title : {
-        element: "p",
-        text : "",
-    },
-    author : {
-        element: "p",
-        text : "",
-    },
-    pages : {
-        element: "p",
-        text : "",
-    },
-    read : {
-        element: "button",
-        text : "",
-        class: "",
-    },
-    removeButton : {
-        element: "button",
-        text: "Remove",
-        class : "remove",
-    },
+	title: {
+		element: "p",
+		text: "",
+	},
+	author: {
+		element: "p",
+		text: "",
+	},
+	pages: {
+		element: "p",
+		text: "",
+	},
+	read: {
+		element: "button",
+		text: "",
+		class: "",
+	},
+	removeButton: {
+		element: "button",
+		text: "Remove",
+		class: "remove",
+	},
 };
 
 function destroyAddNewBookInterface() {
@@ -179,46 +178,58 @@ function destroyAddNewBookInterface() {
 }
 
 function addCardListeners() {
-    const cards = document.querySelectorAll(".card");
-    cards.forEach(card => addButtonListeners(card));
+	const cards = document.querySelectorAll(".card");
+	cards.forEach((card) => addButtonListeners(card));
 }
 
 function addButtonListeners(card) {
-    const buttons = card.querySelectorAll("button");
-    buttons.forEach(button => addEventListener("click", event => {
-        const class_ = event.target.classList;
-        if(cardButtons[class_]) {
-            cardButtons[class_](card);
-            event.stopImmediatePropagation();
-        } 
-    }))
+	const buttons = card.querySelectorAll("button");
+
+	buttons.forEach((button) =>
+		button.addEventListener("click", event => {
+			const class_ = event.target.classList;
+				if (cardButtons[class_]) cardButtons[class_](card);
+		})
+	);
 }
 
 const cardButtons = {
-    read : toggleUnread,
-    "not-read": toggleRead,
-    remove : removeCard,
+	read: toggleToUnread,
+	"not-read": toggleToRead,
+	remove: removeCard,
+};
+
+function toggleToUnread(card) {
+    const toggle = card.children[3];
+	toggle.classList.add("not-read");
+	toggle.classList.remove("read");
+	toggle.textContent = "Not Read";
 }
 
-function toggleUnread(card) {
-    const toggle = card.children[3];
-    toggle.classList.add("not-read");
-    toggle.classList.remove("read");
-    toggle.textContent = "Not Read";
-}
-
-function toggleRead(card) {
-    const toggle = card.children[3];
-    toggle.classList.add("read");
-    toggle.classList.remove("not-read");
-    toggle.textContent = "Read";
+function toggleToRead(card) {
+	const toggle = card.children[3];
+	toggle.classList.add("read");
+	toggle.classList.remove("not-read");
+	toggle.textContent = "Read";
 }
 
 function removeCard(card) {
-    const container = document.querySelector("#book-container");
-    container.removeChild(card);
-    if (!container.firstChild) {
-        const content = document.querySelector("#content");
-        content.removeChild(container);
-    }
+	const container = document.querySelector("#book-container");
+	container.removeChild(card);
+	if (!container.firstChild) {
+		const content = document.querySelector("#content");
+		content.removeChild(container);
+	}
+	removeBook(card);
+}
+
+function removeBook(card) {
+	const index = findBookIndex(card);
+	myLibrary.splice(index, 1);
+}
+
+function findBookIndex(card) {
+	const title = card.children[0];
+	for (let i = 0; i < myLibrary.length; i++)
+		if (myLibrary[i].title === title) return i;
 }
