@@ -13,7 +13,7 @@ body {
     align-items: center;
     justify-content: flex-start;
     height: 100px;
-    background-color: #6E633D;
+    background-color: #420e07;
     padding: 10px;
 }
 
@@ -31,7 +31,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
-    background-color: #C2A878;
+    background-color: #C9B089;
     gap: 20px;
     padding: 20px;
 }
@@ -45,17 +45,17 @@ button:hover {
 }
 
 #add-book {
-    background-color: #355834;
+    background-color: #420e07;
     color: #F1F5F2;
-    border: 3px solid #14281D;
+    border: 3px solid #7D523A;
     border-radius: 5px;
     height: 50px;
     width: 100px;
 }
 
 #book-container {
-    background-color: #355834;
-    border: 3px solid #14281D;
+    background-color: #7D523A;
+    border: 3px solid #7D523A;
     border-radius: 5px;
     width: 80%;
     flex-grow: 1;
@@ -72,9 +72,9 @@ button:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #6E633D;
+    background-color: #A17147;
     color: #F1F5F2;
-    border: 3px solid #14281D;
+    border: 3px solid #C9B089;
     border-radius: 5px;
     width: 150px;
     height: 250px;
@@ -84,17 +84,17 @@ button:hover {
 
 .card button {
     color: #F1F5F2;
-    border: 2px solid #14281D;
+    border: 2px solid #C9B089;
     border-radius: 5px;
     width: 80px;
 }
 
 .remove, .not-read {
-    background-color: #ac5242;
+    background-color: #810000;
 }
 
 .read {
-    background-color: #355834;
+    background-color: #002907;
 }
 
 .remove:hover, .read:hover, .not-read:hover {
@@ -102,9 +102,9 @@ button:hover {
 }
 
 #new-book {
-    background-color: #F1F5F2;
-    color: #14281D;
-    border: 5px solid #14281D;
+    background-color: #420e07;
+    color: #cfa76e;
+    border: 5px solid #EDE0D4;
     border-radius: 10px;
     width: 350px;
     height: 400px;
@@ -121,9 +121,9 @@ button:hover {
 
 input, #new-book button {
     font-family: 'Montserrat', sans-serif;
-    background-color: #355834;
-    color: #F1F5F2;
-    border: 2px solid #14281D;
+    background-color: #292929;
+    color: #EDE0D4;
+    border: 2px solid #EDE0D4;
     border-radius: 5px;
 }
 
@@ -134,7 +134,7 @@ input:hover, #new-book button:hover {
 #footer {
     margin-top: auto;
     text-align: center;
-    background-color: #6E633D;
+    background-color: #420e07;
     color: #F1F5F2;
     align-items: center;
 }
