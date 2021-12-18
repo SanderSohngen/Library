@@ -18,7 +18,7 @@ const options = {
 
 function createAddNewBookInterface() {
 	const content = document.querySelector("#content");
-	if(preventMultipleInterfaces(content)) return;
+	if (preventMultipleInterfaces(content)) return;
 	const newBookDiv = document.createElement("div");
 	newBookDiv.setAttribute("id", "new-book");
 	createChildren(newBookDiv, newBookInterface);
@@ -28,7 +28,7 @@ function createAddNewBookInterface() {
 
 function preventMultipleInterfaces(content) {
 	const childrenArray = Array.from(content.childNodes);
-	return childrenArray.some(child => child.id === "new-book");
+	return childrenArray.some((child) => child.id === "new-book");
 }
 
 function createChildren(parent, children) {
@@ -191,9 +191,9 @@ function addButtonListeners(card) {
 	const buttons = card.querySelectorAll("button");
 
 	buttons.forEach((button) =>
-		button.addEventListener("click", event => {
+		button.addEventListener("click", (event) => {
 			const class_ = event.target.classList;
-				if (cardButtons[class_]) cardButtons[class_](card);
+			if (cardButtons[class_]) cardButtons[class_](card);
 		})
 	);
 }
@@ -205,7 +205,7 @@ const cardButtons = {
 };
 
 function toggleToUnread(card) {
-    const toggle = card.children[3];
+	const toggle = card.children[3];
 	toggle.classList.add("not-read");
 	toggle.classList.remove("read");
 	toggle.textContent = "Not Read";
