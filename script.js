@@ -18,11 +18,17 @@ const options = {
 
 function createAddNewBookInterface() {
 	const content = document.querySelector("#content");
+	if(preventMultipleInterfaces(content)) return;
 	const newBookDiv = document.createElement("div");
 	newBookDiv.setAttribute("id", "new-book");
 	createChildren(newBookDiv, newBookInterface);
 	content.appendChild(newBookDiv);
 	addListeners();
+}
+
+function preventMultipleInterfaces(content) {
+	const childrenArray = Array.from(content.childNodes);
+	return childrenArray.some(child => child.id === "new-book");
 }
 
 function createChildren(parent, children) {
@@ -88,7 +94,6 @@ function submitBook() {
 	const read = readStatus ? "Read" : "Not read";
 	addBookToLibrary(title, author, pages, read);
 	destroyAddNewBookInterface();
-	addListeners();
 }
 
 function addBookToLibrary(title, author, pages, read) {

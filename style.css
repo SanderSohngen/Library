@@ -40,6 +40,10 @@ button {
     font-family: 'Montserrat', sans-serif;
 }
 
+button:hover {
+    transform: scale(1.05);
+}
+
 #add-book {
     background-color: #355834;
     color: #F1F5F2;
