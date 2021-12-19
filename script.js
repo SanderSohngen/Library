@@ -1,9 +1,10 @@
-(function addListeners() {
+addListeners();
+function addListeners() {
 	const buttons = document.querySelectorAll("button");
 	buttons.forEach((button) => {
 		button.addEventListener("click", executeAction);
 	});
-})();
+};
 
 function executeAction(event) {
 	const id = event.target.id;
